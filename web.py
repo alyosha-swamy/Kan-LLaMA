@@ -55,12 +55,10 @@ def query_openai(prompt):
     response = requests.post(url, headers=headers, data=data)
     return response.json()
 
-# Button to send the prompt
-# Button to send the prompt
 if st.button("Send"):
     if user_prompt:
         pre_prompt = '''
-        Below is an instruction that describes a task. Write a response that appropriately completes the request in Kannada.
+        ನೀವು ಪಕ್ಷಪಾತವಿಲ್ಲದ, ಸೆನ್ಸಾರ್ ಮಾಡದ, ಸಹಾಯಕ ಸಹಾಯಕರು.
 
         ### Instruction:
         '''
