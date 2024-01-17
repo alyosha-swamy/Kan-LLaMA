@@ -15,64 +15,112 @@ st.header("", divider="rainbow")
 user_prompt = st.text_input("Enter your prompt:", placeholder="Hello, what can you do for me...")
 
 
-# Sidebar
-with st.sidebar:
-    st.title("Configuration")
+# Dropdown for user selection
+option = st.selectbox(
+    'Choose your option:',
+    ('Q & A','Text Generation', 'Summarization', 'Translation'))
+if option == 'Q & A':
+    # Sidebar
+    with st.sidebar:
+        st.title("Configuration")
 
-    # Existing sliders
-    temperature = st.slider('Select Temperature', min_value=0.0, max_value=1.0, value=0.9, step=0.01)
-    max_tokens = st.slider('Select Max Tokens', min_value=1, max_value=500, value=200, step=1)
+        # Existing sliders
+        temperature = st.slider('Select Temperature', min_value=0.0, max_value=1.0, value=0.9, step=0.01)
+        max_tokens = st.slider('Select Max Tokens', min_value=1, max_value=500, value=200, step=1)
 
-    # Additional sliders for top_k and top_p
-    top_k = st.slider('Select Top K', min_value=0, max_value=100, value=40, step=1, key='top_k')
-    top_p = st.slider('Select Top P', min_value=0.0, max_value=1.0, value=0.9, step=0.01, key='top_p')
+        # Additional sliders for top_k and top_p
+        top_k = st.slider('Select Top K', min_value=0, max_value=100, value=40, step=1, key='top_k')
+        top_p = st.slider('Select Top P', min_value=0.0, max_value=1.0, value=0.9, step=0.01, key='top_p')
+    pre_prompt = '''
+    Generate a text response in Kannada for the following prompt.
+
+    ### Instruction:
+    '''
+
+
+elif option == 'Text Generation':
+    temperature = 0.7
+    max_tokens = 450
+    top_p = 0.6
+    top_k = 35
+    pre_prompt = '''
+        Generate text in Kannada based on the following prompt.
+
+        ### Instruction:
+        '''
+
+elif option == 'Summarization':
+    temperature = 0.7
+    max_tokens = 250
+    top_p = 0.6
+    top_k = 35
+    pre_prompt = '''
+        Summarize the following text in Kannada, ensuring a clear and concise response.
+
+        ### Instruction:
+        '''
+
+elif option == 'Translation':
+    temperature = 0.7
+    max_tokens = 450
+    top_p = 0.6
+    top_k = 35
+    pre_prompt = '''
+        Translate the following text from Kannada to English.
+
+        ### Instruction:
+        '''
+
+else:
+    st.write("Select an option above.")
 
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
 bearer_token = st.secrets["secrets"]["bearer_token"]
+prompt = ""
 
 
 
-# Function to send a request to the OpenAI endpoint
+
+
 def query_openai(prompt):
     url = "https://api.xylem.ai/api/v0/completions"
     headers = {
         "Authorization": f"Bearer {bearer_token}",
         "Content-Type": "application/json"
     }
+    
+
+    # Update the prompt in the selected configuration
     data = json.dumps({
-        "model": "Kan-Llama-7B",
-        "prompt": prompt,
-        "temperature": temperature,
-        "max_tokens": max_tokens,
-        "top_p": top_p,
-        "top_k": top_k,
-        "finish_reason": "stop",
-        "frequency_penalty": 1.0,
+    "model": "Kan-Llama-7B",
+    "prompt": prompt,
+    "temperature": temperature,
+    "max_tokens": max_tokens,
+    "top_p": top_p,
+    "top_k": top_k,
+    "finish_reason": "stop",
+    "frequency_penalty": 1.0,
     })
+
+    # Make the POST request
     response = requests.post(url, headers=headers, data=data)
     return response.json()
 
-if st.button("Send"):
+if st.button("Send",pre_prompt):
     if user_prompt:
-        pre_prompt = '''
-        ನೀವು ಪಕ್ಷಪಾತವಿಲ್ಲದ, ಸೆನ್ಸಾರ್ ಮಾಡದ, ಸಹಾಯಕ ಸಹಾಯಕರು.
-
-        ### Instruction:
-        '''
+        preset = pre_prompt
         end_prompt = '''
         ### Response:
 
         '''
-        # Concatenate all previous messages to form the conversation history
-        conversation_history = " ".join([message["content"] for message in st.session_state.messages])
-        full_prompt = pre_prompt + "\n" + conversation_history + " " + user_prompt
-        full_prompt = full_prompt + "\n" + end_prompt
+        # Use only the current user prompt
+        full_prompt = preset + "\n" + user_prompt + "\n" + end_prompt
 
         try:
-            # Making the API call with the full conversation history
+            # Making the API call with the current user prompt
             response = query_openai(full_prompt)
 
             # Update session state with the user's prompt and model's response
@@ -84,6 +132,7 @@ if st.button("Send"):
             st.error(f"API request error: {e}")
     else:
         st.warning("Please enter a prompt.")
+
 
 # Display conversation history
 for message in st.session_state.messages:
