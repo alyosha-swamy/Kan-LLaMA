@@ -13,8 +13,20 @@ st.header("", divider="rainbow")
 
 # User input
 user_prompt = st.text_input("Enter your prompt:", placeholder="Hello, what can you do for me...")
-temperature = st.slider('Select Temperature', min_value=0.0, max_value=1.0, value=0.9, step=0.01)
-max_tokens = st.slider('Select Max Tokens', min_value=1, max_value=500, value=200, step=1)
+
+
+# Sidebar
+with st.sidebar:
+    st.title("Configuration")
+
+    # Existing sliders
+    temperature = st.slider('Select Temperature', min_value=0.0, max_value=1.0, value=0.9, step=0.01)
+    max_tokens = st.slider('Select Max Tokens', min_value=1, max_value=500, value=200, step=1)
+
+    # Additional sliders for top_k and top_p
+    top_k = st.slider('Select Top K', min_value=0, max_value=100, value=40, step=1, key='top_k')
+    top_p = st.slider('Select Top P', min_value=0.0, max_value=1.0, value=0.9, step=0.01, key='top_p')
+
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -35,6 +47,10 @@ def query_openai(prompt):
         "prompt": prompt,
         "temperature": temperature,
         "max_tokens": max_tokens,
+        "top_p": top_p,
+        "top_k": top_k,
+        "finish_reason": "stop",
+        "frequency_penalty": 1.0,
     })
     response = requests.post(url, headers=headers, data=data)
     return response.json()
