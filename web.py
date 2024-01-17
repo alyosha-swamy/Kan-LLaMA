@@ -13,11 +13,14 @@ st.header("", divider="rainbow")
 
 # User input
 user_prompt = st.text_input("Enter your prompt:", placeholder="Hello, what can you do for me...")
+temperature = st.slider('Select Temperature', min_value=0.0, max_value=1.0, value=0.9, step=0.01)
+max_tokens = st.slider('Select Max Tokens', min_value=1, max_value=500, value=200, step=1)
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
 bearer_token = st.secrets["secrets"]["bearer_token"]
+
 
 
 # Function to send a request to the OpenAI endpoint
@@ -30,9 +33,8 @@ def query_openai(prompt):
     data = json.dumps({
         "model": "Kan-Llama-7B",
         "prompt": prompt,
-        "temperature": 0.9,
-        "max_tokens": 200,
-
+        "temperature": temperature,
+        "max_tokens": max_tokens,
     })
     response = requests.post(url, headers=headers, data=data)
     return response.json()
