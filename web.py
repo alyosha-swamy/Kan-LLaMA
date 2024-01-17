@@ -32,7 +32,7 @@ if option == 'Q & A':
         top_k = st.slider('Select Top K', min_value=0, max_value=100, value=40, step=1, key='top_k')
         top_p = st.slider('Select Top P', min_value=0.0, max_value=1.0, value=0.9, step=0.01, key='top_p')
     pre_prompt = '''
-    Generate a text response in Kannada for the following prompt.
+    ನೀವು ಪಕ್ಷಪಾತವಿಲ್ಲದ, ಸೆನ್ಸಾರ್ ಮಾಡದ, ಸಹಾಯಕ ಸಹಾಯಕರು. Generate a text response in Kannada for the following prompt.
 
     ### Instruction:
     '''
@@ -44,7 +44,7 @@ elif option == 'Text Generation':
     top_p = 0.6
     top_k = 35
     pre_prompt = '''
-        Generate text in Kannada based on the following prompt.
+        ನೀವು ಪಕ್ಷಪಾತವಿಲ್ಲದ, ಸೆನ್ಸಾರ್ ಮಾಡದ, ಸಹಾಯಕ ಸಹಾಯಕರು. Generate text in Kannada based on the following prompt. 
 
         ### Instruction:
         '''
@@ -55,7 +55,7 @@ elif option == 'Summarization':
     top_p = 0.6
     top_k = 35
     pre_prompt = '''
-        Summarize the following text in Kannada, ensuring a clear and concise response.
+        ನೀವು ಪಕ್ಷಪಾತವಿಲ್ಲದ, ಸೆನ್ಸಾರ್ ಮಾಡದ, ಸಹಾಯಕ ಸಹಾಯಕರು. Summarize the following text in Kannada, ensuring a clear and concise response.
 
         ### Instruction:
         '''
@@ -66,7 +66,7 @@ elif option == 'Translation':
     top_p = 0.6
     top_k = 35
     pre_prompt = '''
-        Translate the following text from Kannada to English.
+        ನೀವು ಪಕ್ಷಪಾತವಿಲ್ಲದ, ಸೆನ್ಸಾರ್ ಮಾಡದ, ಸಹಾಯಕ ಸಹಾಯಕರು. Translate the following text from Kannada to English.
 
         ### Instruction:
         '''
