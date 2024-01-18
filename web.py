@@ -31,7 +31,7 @@ if option == 'Q & A':
         # Additional sliders for top_k and top_p
         top_k = st.slider('Select Top K', min_value=0, max_value=100, value=40, step=1, key='top_k')
         top_p = st.slider('Select Top P', min_value=0.0, max_value=1.0, value=0.9, step=0.01, key='top_p')
-        st.info('A big thanks to [E2E Networks](https://www.e2enetworks.com/) for Generously Donating A100 GPUs and [Xylem.ai](https://xylem.ai/) for their Super Fast Inference Stack', icon="🥳")
+        st.info('A big thanks to [E2E Networks](https://www.e2enetworks.com/) for the A100 GPUs and [Xylem.ai](https://xylem.ai/) for their Super Fast Inference Stack', icon="🥳")
         st.warning('The current version is not optimised for multi turn conversations. Please play with the parameters and refresh the site to reset the conversation.s')
     pre_prompt = '''
     Below is an instruction that describes a task. Write a response that appropriately completes the request. ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Generate a text response in Kannada for the following prompt.
