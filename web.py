@@ -46,7 +46,7 @@ elif option == 'Text Generation':
     top_p = 0.6
     top_k = 35
     pre_prompt = '''
-        Below is an instruction that describes a task. Write a response that appropriately completes the request. ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Generate a text response in Kannada based on the following prompt. 
+        Below is an instruction that describes a task. Write a response that appropriately completes the request in Kannada.
 
         ### Instruction:
         '''
