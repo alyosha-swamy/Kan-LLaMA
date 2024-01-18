@@ -34,7 +34,7 @@ if option == 'Q & A':
         st.info('A big thanks to [E2E Networks](https://www.e2enetworks.com/) for Generously Donating A100 GPUs and [Xylem.ai](https://xylem.ai/) for their Super Fast Inference Stack', icon="🥳")
         st.warning('The current version is not optimised for multi turn conversations. Please play with the parameters and refresh the site to reset the conversation.s')
     pre_prompt = '''
-    ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Generate a text response in Kannada for the following prompt.
+    Below is an instruction that describes a task. Write a response that appropriately completes the request. ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Generate a text response in Kannada for the following prompt.
 
     ### Instruction:
     '''
@@ -46,7 +46,7 @@ elif option == 'Text Generation':
     top_p = 0.6
     top_k = 35
     pre_prompt = '''
-        ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Generate a text response in Kannada based on the following prompt. 
+        Below is an instruction that describes a task. Write a response that appropriately completes the request. ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Generate a text response in Kannada based on the following prompt. 
 
         ### Instruction:
         '''
@@ -57,7 +57,7 @@ elif option == 'Summarization':
     top_p = 0.6
     top_k = 35
     pre_prompt = '''
-        ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Summarize the following text in Kannada, ensuring a clear and concise response.
+        Below is an instruction that describes a task. Write a response that appropriately completes the request. ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Summarize the following text in Kannada, ensuring a clear and concise response.
 
         ### Instruction:
         '''
@@ -68,7 +68,7 @@ elif option == 'Translation':
     top_p = 0.6
     top_k = 35
     pre_prompt = '''
-        ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Translate the following text from Kannada to English.
+        Below is an instruction that describes a task. Write a response that appropriately completes the request. ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Translate the following text from Kannada to English.
 
         ### Instruction:
         '''
