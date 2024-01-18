@@ -41,9 +41,19 @@ def query_openai(prompt):
 # Button to send the prompt
 if st.button("Send"):
     if user_prompt:
+        pre_prompt = '''
+        Below is an instruction that describes a task. Write a response that appropriately completes the request in Kannada.
+
+        ### Instruction:
+        '''
+        end_prompt = '''
+        ### Response:
+
+        '''
         # Concatenate all previous messages to form the conversation history
         conversation_history = " ".join([message["content"] for message in st.session_state.messages])
-        full_prompt = conversation_history + " " + user_prompt
+        full_prompt = pre_prompt + "\n" + conversation_history + " " + user_prompt
+        full_prompt = full_prompt + "\n" + end_prompt
 
         try:
             # Making the API call with the full conversation history
