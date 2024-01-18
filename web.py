@@ -32,9 +32,9 @@ if option == 'Q & A':
         top_k = st.slider('Select Top K', min_value=0, max_value=100, value=40, step=1, key='top_k')
         top_p = st.slider('Select Top P', min_value=0.0, max_value=1.0, value=0.9, step=0.01, key='top_p')
         st.info('A big thanks to [E2E Networks](https://www.e2enetworks.com/) for Generously Donating A100 GPUs and [Xylem.ai](https://xylem.ai/) for their Super Fast Inference Stack', icon="🥳")
-        st.warning('The current version is not optimised for multi turn conversations. Please play with the parameters and refresh the site to reset the conversation.')
+        st.warning('The current version is not optimised for multi turn conversations. Please play with the parameters and refresh the site to reset the conversation.s')
     pre_prompt = '''
-    ನೀವು ಪಕ್ಷಪಾತವಿಲ್ಲದ, ಸೆನ್ಸಾರ್ ಮಾಡದ, ಸಹಾಯಕ ಸಹಾಯಕರು. Generate a text response in Kannada for the following prompt.
+    ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Generate a text response in Kannada for the following prompt.
 
     ### Instruction:
     '''
@@ -46,7 +46,7 @@ elif option == 'Text Generation':
     top_p = 0.6
     top_k = 35
     pre_prompt = '''
-        ನೀವು ಪಕ್ಷಪಾತವಿಲ್ಲದ, ಸೆನ್ಸಾರ್ ಮಾಡದ, ಸಹಾಯಕ ಸಹಾಯಕರು. Generate text in Kannada based on the following prompt. 
+        ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Generate a text response in Kannada based on the following prompt. 
 
         ### Instruction:
         '''
@@ -57,7 +57,7 @@ elif option == 'Summarization':
     top_p = 0.6
     top_k = 35
     pre_prompt = '''
-        ನೀವು ಪಕ್ಷಪಾತವಿಲ್ಲದ, ಸೆನ್ಸಾರ್ ಮಾಡದ, ಸಹಾಯಕ ಸಹಾಯಕರು. Summarize the following text in Kannada, ensuring a clear and concise response.
+        ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Summarize the following text in Kannada, ensuring a clear and concise response.
 
         ### Instruction:
         '''
@@ -68,7 +68,7 @@ elif option == 'Translation':
     top_p = 0.6
     top_k = 35
     pre_prompt = '''
-        ನೀವು ಪಕ್ಷಪಾತವಿಲ್ಲದ, ಸೆನ್ಸಾರ್ ಮಾಡದ, ಸಹಾಯಕ ಸಹಾಯಕರು. Translate the following text from Kannada to English.
+        ನೀವು ನಿಷ್ಪಕ್ಷಪಾತ, ಸಹಾಯಕ ಲೇಖಕರು. Translate the following text from Kannada to English.
 
         ### Instruction:
         '''
@@ -124,6 +124,7 @@ if st.button("Send",pre_prompt):
         try:
             # Making the API call with the current user prompt
             response = query_openai(full_prompt)
+            
 
             # Update session state with the user's prompt and model's response
             st.session_state.messages.append({"role": "user", "content": user_prompt})
@@ -140,4 +141,8 @@ if st.button("Send",pre_prompt):
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
+
+
+
+
 
