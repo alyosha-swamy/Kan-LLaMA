@@ -42,10 +42,9 @@ if option == 'Q & A':
 
 
 elif option == 'Text Generation':
-    temperature = 0.5
+    temperature = 0.7
     max_tokens = 750
     top_p = 0.5
-    top_k = 35
     pre_prompt = '''
         Below is an instruction that describes a task. Write a response that appropriately completes the request in Kannada.
 
