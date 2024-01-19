@@ -53,9 +53,9 @@ elif option == 'Text Generation':
         '''
 
 elif option == 'Summarization':
-    temperature = 0.7
-    max_tokens = 250
-    top_p = 0.6
+    temperature = 0.5
+    max_tokens = 450
+    top_p = 0.9
     top_k = 35
     pre_prompt = '''
         Below is an instruction that describes a task. Write a response that appropriately completes the request. Summarize the following text in Kannada, ensuring a clear and concise response.
