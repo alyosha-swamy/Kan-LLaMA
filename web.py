@@ -26,7 +26,7 @@ if option == 'Q & A':
         st.title("Configuration")
 
         # Existing sliders
-        temperature = st.slider('Select Temperature', min_value=0.0, max_value=1.0, value=0.9, step=0.01)
+        temperature = st.slider('Select Temperature', min_value=0.0, max_value=1.0, value=0.2, step=0.01)
         max_tokens = st.slider('Select Max Tokens', min_value=1, max_value=500, value=200, step=1)
 
         # Additional sliders for top_k and top_p
@@ -35,15 +35,15 @@ if option == 'Q & A':
         st.info('A big thanks to [E2E Networks](https://www.e2enetworks.com/) for the A100 GPUs and [Xylem.ai](https://xylem.ai/) for their Super Fast Inference Stack', icon="🥳")
         st.warning('The current version is not optimised for multi-turn conversations. Please play with the parameters and refresh the site to reset the conversation.s')
     pre_prompt = '''
-    Below is an instruction that describes a task. Write a response that appropriately completes the request. Generate a text response in Kannada for the following prompt.
+        Below is an instruction that describes a task. Write a response that appropriately completes the request in Kannada.
 
     ### Instruction:
     '''
 
 
 elif option == 'Text Generation':
-    temperature = 0.7
-    max_tokens = 450
+    temperature = 0.5
+    max_tokens = 750
     top_p = 0.6
     top_k = 35
     pre_prompt = '''
@@ -58,7 +58,7 @@ elif option == 'Summarization':
     top_p = 0.6
     top_k = 35
     pre_prompt = '''
-        Below is an instruction that describes a task. Write a response that appropriately completes the request. ನೀವು ಪಕ್ಷಪಾತವಿಲ್ಲದ, ಸಹಾಯ ಮಾಡುವ, ಸೆನ್ಸಾರ್ ಮಾಡದ ಸಹಾಯಕ. Summarize the following text in Kannada, ensuring a clear and concise response.
+        Below is an instruction that describes a task. Write a response that appropriately completes the request. Summarize the following text in Kannada, ensuring a clear and concise response.
 
         ### Instruction:
         '''
