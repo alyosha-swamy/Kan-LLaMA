@@ -45,7 +45,6 @@ elif option == 'Text Generation':
     temperature = 0.7
     max_tokens = 750
     top_p = 0.5
-    top_k = 40
     pre_prompt = '''
         Below is an instruction that describes a task. Write a response that appropriately completes the request in Kannada.
 
@@ -82,19 +81,31 @@ def query_openai(prompt):
         "Authorization": f"Bearer {bearer_token}",
         "Content-Type": "application/json"
     }
-    
 
-    # Update the prompt in the selected configuration
-    data = json.dumps({
-    "model": "Kan-Llama-7B",
-    "prompt": prompt,
-    "temperature": temperature,
-    "max_tokens": max_tokens,
-    "top_p": top_p,
-    "top_k": top_k,
-    "finish_reason": "stop",
-    "frequency_penalty": 1.0,
-    })
+    data = ''
+    if top_k > 0:
+            data = json.dumps({
+        "model": "Kan-Llama-7B",
+        "prompt": prompt,
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "top_p": top_p,
+        "top_k": top_k,
+        "finish_reason": "stop",
+        "frequency_penalty": 1.0,
+        })
+    else:
+        # Update the prompt in the selected configuration
+        data = json.dumps({
+        "model": "Kan-Llama-7B",
+        "prompt": prompt,
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "top_p": top_p,
+        "top_k": top_k,
+        "finish_reason": "stop",
+        "frequency_penalty": 1.0,
+        })
 
     # Make the POST request
     response = requests.post(url, headers=headers, data=data)
