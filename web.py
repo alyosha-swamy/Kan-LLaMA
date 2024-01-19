@@ -18,7 +18,8 @@ user_prompt = st.text_input("Enter your prompt:", placeholder="Hello, what can y
 # Dropdown for user selection
 option = st.selectbox(
     'Choose your option:',
-    ('Q & A','Text Generation', 'Summarization', 'Translation'))
+    ('Q & A','Text Generation', 'Summarization'))
+
 if option == 'Q & A':
     # Sidebar
     with st.sidebar:
@@ -61,18 +62,6 @@ elif option == 'Summarization':
 
         ### Instruction:
         '''
-
-elif option == 'Translation':
-    temperature = 0.7
-    max_tokens = 450
-    top_p = 0.6
-    top_k = 35
-    pre_prompt = '''
-        Below is an instruction that describes a task. Write a response that appropriately completes the request. ನೀವು ಪಕ್ಷಪಾತವಿಲ್ಲದ, ಸಹಾಯ ಮಾಡುವ, ಸೆನ್ಸಾರ್ ಮಾಡದ ಸಹಾಯಕ. Translate the following text from Kannada to English.
-
-        ### Instruction:
-        '''
-
 else:
     st.write("Select an option above.")
 
