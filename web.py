@@ -12,7 +12,7 @@ st.header("", divider="rainbow")
 
 
 # User input
-user_prompt = st.text_input("Enter your prompt:", placeholder="Hello, what can you do for me...")
+user_prompt = st.text_area("Enter your prompt:", placeholder="Hello, what can you do for me...")
 
 
 # Dropdown for user selection
