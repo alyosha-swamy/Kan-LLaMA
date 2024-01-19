@@ -55,7 +55,6 @@ elif option == 'Summarization':
     temperature = 0.5
     max_tokens = 450
     top_p = 0.9
-    top_k = 40
     pre_prompt = '''
         Below is an instruction that describes a task. Write a response that appropriately completes the request. Summarize the following text in Kannada, ensuring a clear and concise response.
 
@@ -82,30 +81,17 @@ def query_openai(prompt):
         "Content-Type": "application/json"
     }
 
-    data = ''
-    if top_k > 0:
-            data = json.dumps({
-        "model": "Kan-Llama-7B",
-        "prompt": prompt,
-        "temperature": temperature,
-        "max_tokens": max_tokens,
-        "top_p": top_p,
-        "top_k": top_k,
-        "finish_reason": "stop",
-        "frequency_penalty": 1.0,
-        })
-    else:
-        # Update the prompt in the selected configuration
-        data = json.dumps({
-        "model": "Kan-Llama-7B",
-        "prompt": prompt,
-        "temperature": temperature,
-        "max_tokens": max_tokens,
-        "top_p": top_p,
-        "top_k": top_k,
-        "finish_reason": "stop",
-        "frequency_penalty": 1.0,
-        })
+    
+    # Update the prompt in the selected configuration
+    data = json.dumps({
+    "model": "Kan-Llama-7B",
+    "prompt": prompt,
+    "temperature": temperature,
+    "max_tokens": max_tokens,
+    "top_p": top_p,
+    "finish_reason": "stop",
+    "frequency_penalty": 1.0,
+    })
 
     # Make the POST request
     response = requests.post(url, headers=headers, data=data)
